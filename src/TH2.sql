@@ -1,5 +1,5 @@
-CREATE DATABASE QuanLySinhVien1;
-USE QuanLySinhVien1;
+CREATE DATABASE QuanLySinhVien2;
+USE QuanLySinhVien2;
 CREATE TABLE Class(
     ClassID     INT         NOT NULL  PRIMARY KEY ,
     ClassName   VARCHAR(60) NOT NULL ,
@@ -35,10 +35,14 @@ CREATE TABLE Mark(
     FOREIGN KEY (StudentID) REFERENCES Student(StudentID)
 );
 
-INSERT INTO Class(ClassID, ClassName, StartDate, Status) VALUES
-                                                             (1,'A1',20/12/2008,1),
-                                                             (2,'A2',22/12/2008,1),
-                                                             (3,'B3',CURRENT_DATE,0);
+INSERT INTO Class
+VALUES (1, 'A1', '2008-12-20', 1);
+INSERT INTO Class
+VALUES (2, 'A2', '2008-12-22', 1);
+INSERT INTO Class
+VALUES (3, 'B3', current_date, 0);
+
+
 INSERT INTO Student(studentid, studentname, address, phone, status, classid) VALUES
 (1,'Hung','Ha Noi',0912113113,1,1),
 (2,'Hoa','Hai Phong','',1,1),
@@ -53,4 +57,21 @@ INSERT INTO Mark (SubId, StudentId, Mark, ExamTimes)
 VALUES (1, 1, 8, 1),
        (1, 2, 10, 2),
        (2, 1, 12, 1);
+
+SELECT * FROM Student WHERE StudentName LIKE 'h%';
+SELECT * FROM Class WHERE MONTH(StartDate) = 12;
+SELECT * FROM Subject WHERE Credit BETWEEN 3 and 5;
+
+UPDATE Student SET ClassID = 2 WHERE StudentID = 1;
+SELECT Student.StudentName,Subject.SubName,M.Mark FROM Student JOIN Subject JOIN Mark M on Student.StudentID = M.StudentID and Subject.SubID = M.SubID ORDER BY Mark DESC;
+
+SELECT * FROM Student;
+SELECT * FROM Student WHERE Status = true;
+SELECT * FROM Subject WHERE Credit < 10;
+SELECT StudentID AS "STT", ClassName AS "Tên Lớp" , StudentName AS "Tên học sinh" FROM Class JOIN Student S on Class.ClassID = S.ClassID WHERE ClassName = 'A1';
+
+SELECT S.StudentId, S.StudentName, Sub.SubName, M.Mark
+FROM Student S join Mark M on S.StudentId = M.StudentId join Subject Sub on M.SubId = Sub.SubId
+WHERE Sub.SubName = 'CF';
+
 
