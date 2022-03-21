@@ -1,7 +1,7 @@
-CREATE DATABASE QuanLySinhVien2;
-USE QuanLySinhVien2;
+CREATE DATABASE QuanLySinhVien1;
+USE QuanLySinhVien1;
 CREATE TABLE Class(
-    ClassID     INT         NOT NULL AUTO_INCREMENT PRIMARY KEY ,
+    ClassID     INT         NOT NULL  PRIMARY KEY ,
     ClassName   VARCHAR(60) NOT NULL ,
     StartDate   DATETIME    NOT NULL ,
     Status      BIT
@@ -35,6 +35,22 @@ CREATE TABLE Mark(
     FOREIGN KEY (StudentID) REFERENCES Student(StudentID)
 );
 
-SELECT * FROM Student;
-INSERT INTO Class(ClassID, ClassName, StartDate, Status) VALUES (2,'C1221H1',24/12/2021,1);
-INSERT INTO Student(StudentID, StudentName, Address, Phone, ClassID) VALUES (1,'Khanh','Hanoi','0349582375',2);
+INSERT INTO Class(ClassID, ClassName, StartDate, Status) VALUES
+                                                             (1,'A1',20/12/2008,1),
+                                                             (2,'A2',22/12/2008,1),
+                                                             (3,'B3',CURRENT_DATE,0);
+INSERT INTO Student(studentid, studentname, address, phone, status, classid) VALUES
+(1,'Hung','Ha Noi',0912113113,1,1),
+(2,'Hoa','Hai Phong','',1,1),
+(3,'Manh','HCM',0123123123,0,2);
+
+INSERT INTO Subject
+VALUES (1, 'CF', 5, 1),
+       (2, 'C', 6, 1),
+       (3, 'HDJ', 5, 1),
+       (4, 'RDBMS', 10, 1);
+INSERT INTO Mark (SubId, StudentId, Mark, ExamTimes)
+VALUES (1, 1, 8, 1),
+       (1, 2, 10, 2),
+       (2, 1, 12, 1);
+
