@@ -88,3 +88,15 @@ FROM Student S join Mark M on S.StudentId = M.StudentId
 GROUP BY S.StudentId, S.StudentName
 HAVING AVG(Mark) >= ALL (SELECT AVG(Mark) FROM Mark GROUP BY Mark.StudentId);
 
+SELECT * FROM Subject WHERE Credit = (SELECT MAX(Credit) FROM Subject);
+SELECT * FROM Mark WHERE Mark = (SELECT MAX(Mark) FROM Mark);
+SELECT Student.StudentID,StudentName,Address,Phone,ClassID,AVG(Mark) FROM Student JOIN Mark M on Student.StudentID = M.StudentID
+GROUP BY Student.StudentID, StudentName, Address, Phone, ClassID
+ORDER BY AVG(Mark) DESC;
+
+
+
+
+
+
+
