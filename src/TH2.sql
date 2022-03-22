@@ -74,4 +74,17 @@ SELECT S.StudentId, S.StudentName, Sub.SubName, M.Mark
 FROM Student S join Mark M on S.StudentId = M.StudentId join Subject Sub on M.SubId = Sub.SubId
 WHERE Sub.SubName = 'CF';
 
+SELECT Address,COUNT(StudentID) AS 'Số Lượng Học Viên' FROM Student GROUP BY Address;
+SELECT Student.StudentID,StudentName,AVG(Mark) FROM Student JOIN Mark M on Student.StudentID = M.StudentID GROUP BY Student.StudentID, StudentName;
+
+
+SELECT S.StudentId,S.StudentName, AVG(Mark)
+FROM Student S join Mark M on S.StudentId = M.StudentId
+GROUP BY S.StudentId, S.StudentName
+HAVING AVG(Mark) > 15;
+
+SELECT S.StudentId, S.StudentName, AVG(Mark)
+FROM Student S join Mark M on S.StudentId = M.StudentId
+GROUP BY S.StudentId, S.StudentName
+HAVING AVG(Mark) >= ALL (SELECT AVG(Mark) FROM Mark GROUP BY Mark.StudentId);
 
